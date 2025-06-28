@@ -7,11 +7,11 @@
 
 import Foundation
 
-class IPViewModel: ObservableObject{
+class IPViewModel: ObservableObject {
     @Published var myIp = "loading..."
     @Published var info: InfoModel?
-    @Published var appError:AppError?
-    
+    @Published var appError: AppError?
+
     func getIp() async {
         do {
             guard let url = URL(string: "https://api.ipify.org/?format=json") else {
@@ -26,8 +26,8 @@ class IPViewModel: ObservableObject{
             appError = .unknown
         }
     }
-    
-    ///Combine Version
+
+    /// Combine Version
 //    private var cancellables = Set<AnyCancellable>()
 //    func getIp() {
 //        //Cheking URL
@@ -35,7 +35,7 @@ class IPViewModel: ObservableObject{
 //             appError = .url
 //            return
 //        }
-//        
+//
 //        URLSession.shared.dataTaskPublisher(for: url)
 //            .map(\.data)
 //            .decode(type: IPModel.self, decoder: JSONDecoder())
@@ -49,11 +49,10 @@ class IPViewModel: ObservableObject{
 //                        self.appError = .network
 //                    }
 //                }
-//                
+//
 //            } receiveValue: { [weak self] ip in
 //                self?.myIp = ip
 //            }
 //            .store(in: &cancellables)
 //    }
-    
 }
