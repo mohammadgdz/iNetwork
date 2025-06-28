@@ -6,20 +6,20 @@
 //
 
 import Foundation
+
 enum AppError: LocalizedError, Identifiable {
     var id: String { localizedDescription } // Identifiable for `.alert()`
-
-    case network(description: String)
-    case decoding(description: String)
+    case url
+    case network
+    case decoding
     case unknown
 
     var errorDescription: String? {
         switch self {
-        case .network(let description),
-             .decoding(let description):
-            return description
-        case .unknown:
-            return "Something went wrong. Please try again."
+        case .url: return "URL is invalid"
+        case .network: return "Network error"
+        case .decoding: return "Decoding error"
+        case .unknown: return "Something went wrong. Please try again."
         }
     }
 }

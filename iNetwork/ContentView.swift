@@ -11,16 +11,25 @@ struct ContentView: View {
     @ObservedObject var viewModel = IPViewModel()
 
     var body: some View {
-        Text("Your ip \(viewModel.myIp)")
-            
-        
-
+        Text("Your ip is \(viewModel.myIp)")
         .navigationTitle("iNetwork")
+        
         .task {
-         await viewModel.getIp()
+           await viewModel.getIp()
         }
+        
         .alert(item: $viewModel.appError) { error in
-            Alert(title: Text("Error"), message: Text("\(error.localizedDescription)"))
+            Alert(
+                title: Text("Something went wrong"),
+                message: Text("\(error.localizedDescription)"),
+                primaryButton: .default(Text("Retry"),action: {
+                    Task {
+                        await viewModel.getIp()
+                    }
+                }),
+                secondaryButton: .default(Text("Ok"))
+            )
+            
         }
     }
 }
