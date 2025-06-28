@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct IPModel: Codable {
-    let ip: String
-}
-
 struct InfoModel: Codable {
     let ip: String?
     let country: String?
@@ -38,29 +34,3 @@ extension InfoModel {
     }
 }
 
-// {
-//  "ip": "45.144.29.129",
-//  "city": "Amsterdam",
-//  "region": "North Holland",
-//  "country": "NL",
-//  "loc": "52.3740,4.8897",
-//  "org": "AS44477 PQ HOSTING PLUS S.R.L.",
-//  "postal": "1012",
-//  "timezone": "Europe/Amsterdam",
-//  "readme": "https://ipinfo.io/missingauth"
-// }
-
-// "query": "24.48.0.1",
-// "status": "success",
-// "country": "Canada",
-// "countryCode": "CA",
-// "region": "QC",
-// "regionName": "Quebec",
-// "city": "Montreal",
-// "zip": "H1L",
-// "lat": 45.6026,
-// "lon": -73.5167,
-// "timezone": "America/Toronto",
-// "isp": "Le Groupe Videotron Ltee",
-// "org": "Videotron Ltee",
-// "as": "AS5769 Videotron Ltee"

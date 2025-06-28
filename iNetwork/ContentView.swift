@@ -11,10 +11,10 @@ struct ContentView: View {
     @ObservedObject var viewModel = IPViewModel()
 
     var body: some View {
-        NavigationView {
-            Group {
+        ScrollView {
+            VStack(alignment: .leading) {
                 if let info = viewModel.info {
-                    List(info.asKeyValuePairs, id: \.key) { pair in
+                    ForEach(info.asKeyValuePairs, id: \.key) { pair in
                         HStack {
                             Text(pair.key)
                                 .fontWeight(.bold)
@@ -22,17 +22,21 @@ struct ContentView: View {
                             Text(pair.value)
                                 .foregroundColor(.secondary)
                         }
-                        .padding(.vertical,4)
+                        .padding()
                     }
-                    .shadow(color: .white,radius: 5,x:5)
-                    .navigationTitle("iNetwork")
+
+                    if let coordinate = info.coordinate {
+                        MapView(coordinate: coordinate)
+                            .frame(height: 250)
+                            .shadow(color: .white, radius: 5, x: 0, y: 0)
+                    }
+
                 } else {
                     ProgressView("Loading...")
                 }
             }
-            
         }
-        
+
         .task {
             await viewModel.getInfo()
         }
