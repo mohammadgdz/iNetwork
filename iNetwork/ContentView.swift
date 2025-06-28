@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel = IPViewModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Text("Your ip \(viewModel.myIp)")
+            
+        
+
+        .navigationTitle("iNetwork")
+        .task {
+         await viewModel.getIp()
         }
-        .padding()
+        .alert(item: $viewModel.appError) { error in
+            Alert(title: Text("Error"), message: Text("\(error.localizedDescription)"))
+        }
     }
 }
 
