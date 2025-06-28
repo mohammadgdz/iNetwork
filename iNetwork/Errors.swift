@@ -19,7 +19,7 @@ enum AppError: LocalizedError, Identifiable {
         case .url: return "URL is invalid"
         case .network: return "Network error"
         case .decoding: return "Decoding error"
-        case .unknown: return "Something went wrong. Please try again."
+        case .unknown: return "Please try again."
         }
     }
 }

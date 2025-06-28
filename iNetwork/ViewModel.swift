@@ -12,24 +12,45 @@ class IPViewModel: ObservableObject {
     @Published var myIp = "loading..."
     @Published var info: InfoModel?
     @Published var appError: AppError?
-    
-    func getIp() async {
+
+
+    func getInfo() async {
         do {
-            guard let url = URL(string: "https://api.ipify.org/?format=json") else {
-                appError = .network
+            guard let url = URL(string: "https://ipinfo.io/json") else {
+                appError = .url
                 return
             }
+
             let (data, _) = try await URLSession.shared.data(from: url)
-            let ipModel = try JSONDecoder().decode(IPModel.self, from: data)
-            myIp = ipModel.ip
-            print(myIp)
+            info = try JSONDecoder().decode(InfoModel.self, from: data)
+            
+            print(info as Any)
+            
         } catch {
             appError = .unknown
         }
     }
 }
 
-    /// Combine Version
+
+//    func getIp() async {
+//        do {
+//            guard let url = URL(string: "https://api.ipify.org/?format=json") else {
+//                appError = .url
+//                return
+//            }
+//            let (data, _) = try await URLSession.shared.data(from: url)
+//            let ipModel = try JSONDecoder().decode(IPModel.self, from: data)
+//            myIp = ipModel.ip
+//            await getInfo()
+//
+//            print(myIp)
+//        } catch {
+//            appError = .unknown
+//        }
+//    }
+
+/// Combine Version
 //    private var cancellables = Set<AnyCancellable>()
 //    func getIp() {
 //        //Cheking URL

@@ -11,24 +11,44 @@ struct ContentView: View {
     @ObservedObject var viewModel = IPViewModel()
 
     var body: some View {
-        Text("Your ip is \(viewModel.myIp)")
-            .navigationTitle("iNetwork")
-            .task {
-                await viewModel.getIp()
-            }
-
-            .alert(item: $viewModel.appError) { error in
-                Alert(
-                    title: Text("Something went wrong"),
-                    message: Text("\(error.localizedDescription)"),
-                    primaryButton: .default(Text("Retry"), action: {
-                        Task {
-                            await viewModel.getIp()
+        NavigationView {
+            Group {
+                if let info = viewModel.info {
+                    List(info.asKeyValuePairs, id: \.key) { pair in
+                        HStack {
+                            Text(pair.key)
+                                .fontWeight(.bold)
+                            Spacer()
+                            Text(pair.value)
+                                .foregroundColor(.secondary)
                         }
-                    }),
-                    secondaryButton: .default(Text("Ok"))
-                )
+                        .padding(.vertical,4)
+                    }
+                    .shadow(color: .white,radius: 5,x:5)
+                    .navigationTitle("iNetwork")
+                } else {
+                    ProgressView("Loading...")
+                }
             }
+            
+        }
+        
+        .task {
+            await viewModel.getInfo()
+        }
+
+        .alert(item: $viewModel.appError) { error in
+            Alert(
+                title: Text("Something went wrong"),
+                message: Text("\(error.localizedDescription)"),
+                primaryButton: .default(Text("Retry"), action: {
+                    Task {
+                        await viewModel.getInfo()
+                    }
+                }),
+                secondaryButton: .default(Text("Ok"))
+            )
+        }
     }
 }
 

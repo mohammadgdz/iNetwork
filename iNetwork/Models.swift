@@ -12,26 +12,43 @@ struct IPModel: Codable {
 }
 
 struct InfoModel: Codable {
-    let query: String
-    let status: String
-    let country: String
-    let countryCode: String
-    let region: String
-    let regionName: String
-    let city: String
-    let zip: String
-    let lat: Double
-    let lon: Double
-    let timezone: String
-    let isp: String
-    let org: String
-    let address: String
+    let ip: String?
+    let country: String?
+    let region: String?
+    let city: String?
+    let postal: String?
+    let timezone: String?
+    let isp: String?
+    let org: String?
+    let loc: String?
+}
 
-    enum CodingKeys: String, CodingKey {
-        case query, status, country, countryCode, region, regionName, city, zip, lat, lon, timezone, isp, org
-        case address = "as"
+extension InfoModel {
+    var asKeyValuePairs: [(key: String, value: String)] {
+        [
+            ("IP", ip ?? "N/A"),
+            ("City", city ?? "N/A"),
+            ("Region", region ?? "N/A"),
+            ("Country", country ?? "N/A"),
+            ("Location", loc ?? "N/A"),
+            ("Organization", org ?? "N/A"),
+            ("Postal", postal ?? "N/A"),
+            ("Timezone", timezone ?? "N/A")
+        ]
     }
 }
+
+// {
+//  "ip": "45.144.29.129",
+//  "city": "Amsterdam",
+//  "region": "North Holland",
+//  "country": "NL",
+//  "loc": "52.3740,4.8897",
+//  "org": "AS44477 PQ HOSTING PLUS S.R.L.",
+//  "postal": "1012",
+//  "timezone": "Europe/Amsterdam",
+//  "readme": "https://ipinfo.io/missingauth"
+// }
 
 // "query": "24.48.0.1",
 // "status": "success",
