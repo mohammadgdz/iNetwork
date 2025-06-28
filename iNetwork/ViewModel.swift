@@ -7,11 +7,12 @@
 
 import Foundation
 
+@MainActor
 class IPViewModel: ObservableObject {
     @Published var myIp = "loading..."
     @Published var info: InfoModel?
     @Published var appError: AppError?
-
+    
     func getIp() async {
         do {
             guard let url = URL(string: "https://api.ipify.org/?format=json") else {
@@ -26,6 +27,7 @@ class IPViewModel: ObservableObject {
             appError = .unknown
         }
     }
+}
 
     /// Combine Version
 //    private var cancellables = Set<AnyCancellable>()
@@ -55,4 +57,3 @@ class IPViewModel: ObservableObject {
 //            }
 //            .store(in: &cancellables)
 //    }
-}
