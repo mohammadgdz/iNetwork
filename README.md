@@ -28,21 +28,6 @@ open iNetwork.xcodeproj
 
 Then build and run the app on the simulator or a real device.
 
-## 🗂 Project Structure
-
-```
-iNetwork/
-├── Models/
-├── Network/
-├── ViewControllers/
-├── Resources/
-└── Utilities/
-```
-
-* **Models**: Data models used for decoding API responses
-* **Network**: API client and networking logic
-* **ViewControllers**: UI screens
-* **Resources**: Assets, launch screen, etc.
 
 ## 🧠 How It Works
 
