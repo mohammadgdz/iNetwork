@@ -1,5 +1,5 @@
 
-````markdown
+
 # iNetwork
 
 An iOS app that fetches the geolocation of a given IP address and displays it on a map using Apple's MapKit.
@@ -85,14 +85,3 @@ Feel free to reach out via GitHub or open an issue!
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-```
-
----
-
-Let me know if:
-- You want to include screenshots or screen recordings  
-- The app uses any special dependencies (like Alamofire, SwiftyJSON, etc.)  
-- Or you'd like a version written in **both English and Persian**
-
-Want me to generate a GitHub badge section or auto-table of contents too?
-```
