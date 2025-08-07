@@ -4,6 +4,11 @@
 
 An iOS app that fetches the geolocation of a given IP address and displays it on a map using Apple's MapKit.
 
+<img src="iNetwork/Images/dark-mode.PNG" alt="My Logo" width="250"/>
+<img src="iNetwork/Images/light-mode.PNG" alt="My Logo" width="250"/>
+
+
+
 ## 📱 Features
 
 - Fetches geolocation data from public IP using a REST API
